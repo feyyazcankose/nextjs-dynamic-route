@@ -1,5 +1,5 @@
 import React, { LazyExoticComponent } from 'react';
-import { defaultLang, lang, languages } from './language';
+import { defaultLang, tLang, languages } from './language';
 
 export const routers: [{ path: string, component: string }] = [
     {
@@ -9,21 +9,23 @@ export const routers: [{ path: string, component: string }] = [
 ]
 
 for (const language of languages) {
+    let prefix = language === defaultLang ? "" : "/" + language;
+    let t = tLang[language];
     routers.push(...[
         {
             path: `/${language}`,
             component: "Home"
         },
         {
-            path: `${language === defaultLang ? "" : "/" + language}/${lang[language]["about"]}`,
+            path: `${prefix}/${t["about"]}`,
             component: "About"
         },
         {
-            path: `${language === defaultLang ? "" : "/" + language}/${lang[language]["blog"]}`,
+            path: `${prefix}/${t["blog"]}`,
             component: "BlogPage"
         },
         {
-            path: `${language === defaultLang ? "" : "/" + language}/${lang[language]["blog"]}/:parameter`,
+            path: `${prefix}/${t["blog"]}/:parameter`,
             component: "BlogDetailPage"
         }
     ])

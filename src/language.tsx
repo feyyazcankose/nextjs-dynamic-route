@@ -3,7 +3,7 @@ export const languages: string[] = [
     "tr",
     "en"
 ]
-export const lang: { [key: string]: { [key: string]: string } } = {
+export const tLang: { [key: string]: { [key: string]: string } } = {
     en: {
         "about": "about",
         "blog": "blogs",
