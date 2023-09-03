@@ -37,8 +37,8 @@ interface ComponentMap {
 
 export const componentMap: ComponentMap = {
     "Home": React.lazy(() => import('./pages/index')),
-    "About": React.lazy(() => import('./app/About')),
-    "BlogPage": React.lazy(() => import('./app/Blog/BlogPage')),
-    "BlogDetailPage": React.lazy(() => import('./app/Blog/BlogDetailPage')),
+    "About": React.lazy(() => import('./app/pages/About')),
+    "BlogPage": React.lazy(() => import('./app/pages/Blog/BlogPage')),
+    "BlogDetailPage": React.lazy(() => import('./app/pages/Blog/BlogDetailPage')),
 };
 
