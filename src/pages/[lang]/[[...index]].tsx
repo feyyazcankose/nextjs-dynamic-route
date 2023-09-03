@@ -30,12 +30,22 @@ export const getServerSideProps = async ({ resolvedUrl = null }) => {
     let parameter = "";
     const multiParamsArray = currentUrl.split("/");
 
-    if (multiParamsArray[1] === defaultLang) {
+    if (multiParamsArray.length === 3 && multiParamsArray[1] === defaultLang) {
         multiParamsArray.splice(1, 1);
         currentUrl = multiParamsArray.join('/');
     }
-    else if (multiParamsArray.length > 2) {
+    else if (multiParamsArray.length > 3 && multiParamsArray[1] === defaultLang) {
+        multiParamsArray.splice(1, 1);
         parameter = multiParamsArray.pop();
+
+        let rootParams = multiParamsArray.join('/');
+        if (parameter) {
+            currentUrl = rootParams + "/:parameter";
+        }
+    }
+    else if (multiParamsArray.length > 3) {
+        parameter = multiParamsArray.pop();
+
         let rootParams = multiParamsArray.join('/');
         if (parameter) {
             currentUrl = rootParams + "/:parameter";
