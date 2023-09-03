@@ -6,13 +6,13 @@ export default function NavMenu() {
         <div style={{ display: "flex", gap: "100px", marginBottom: "20px" }}>
             <ul style={{ display: "flex", gap: "20px" }}>
                 <li>
-                    <Link href="/">Ana Sayfa</Link>
+                    <Link href="/" >Ana Sayfa</Link>
                 </li>
                 <li>
-                    <Link href="/hakkimizda">Hakkımızda</Link>
+                    <Link href="/hakkimizda" >Hakkımızda</Link>
                 </li>
                 <li>
-                    <Link href="/bloglar">Bloglar</Link>
+                    <Link href="/bloglar" >Bloglar</Link>
                 </li>
             </ul>
         </div>

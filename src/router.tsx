@@ -1,7 +1,9 @@
 import React, { LazyExoticComponent } from 'react';
 import { defaultLang, tLang, languages } from './language';
 
-export const routers: [{ path: string, component: string }] = [
+export interface IRouter { path: string, component: string }
+
+export const routers: IRouter[] = [
     {
         path: "/",
         component: "index"

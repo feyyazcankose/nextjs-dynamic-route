@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
-import PageNotFound from '../../404';
-import { componentMap, routers } from '../../../router';
-import { defaultLang, languages } from '../../../language';
+import PageNotFound from '../404';
+import { IRouter, componentMap, routers } from '../../router';
+import { defaultLang } from '../../language';
+
 
 interface MasterPageProps {
     component: string;
@@ -28,20 +29,22 @@ export const getServerSideProps = async ({ resolvedUrl = null }) => {
     let currentUrl: any = resolvedUrl ?? ""
     let parameter = "";
     const multiParamsArray = currentUrl.split("/");
-    if (!languages.includes(multiParamsArray[1])) {
+
+    if (multiParamsArray[1] === defaultLang) {
+        multiParamsArray.splice(1, 1);
+        currentUrl = multiParamsArray.join('/');
+    }
+    else if (multiParamsArray.length > 2) {
         parameter = multiParamsArray.pop();
         let rootParams = multiParamsArray.join('/');
         if (parameter) {
             currentUrl = rootParams + "/:parameter";
         }
     }
-    else if (multiParamsArray[1] === defaultLang) {
-        multiParamsArray.splice(1, 1);
-        currentUrl = multiParamsArray.join('/');
-    }
+
     return {
         props: {
-            component: routers.filter((item) => item.path === currentUrl)[0]?.component ?? "404",
+            component: routers.filter((item: IRouter) => item.path === currentUrl)[0]?.component ?? "404",
             parameter: parameter
         }
     }
